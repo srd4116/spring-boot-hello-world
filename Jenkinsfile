@@ -98,13 +98,13 @@ pipeline {
             nexusVersion: 'nexus3', 
             protocol: 'http', 
             nexusUrl: 'localhost:8081', 
-            groupId: "com.howtodoinjava.demo", 
+            groupId: "com.hello", 
             version: "0.0.1-SNAPSHOT", 
             repository: 'maven2_upload', 
             credentialsId: 'nexusjenkins', 
             artifacts: [
-                [artifactId: "spring-mvc-jenkins",  classifier: '', file: "target/spring-mvc-jenkins.war", type: 'war'],
-                [artifactId: "spring-mvc-jenkins", classifier: '', file: 'pom.xml', type: 'pom']
+                [artifactId: "HelloWorld",  classifier: '', file: "target/HelloWorld.jar", type: 'jar'],
+                [artifactId: "HelloWorld", classifier: '', file: 'pom.xml', type: 'pom']
             ]
         )
 	 }
@@ -112,9 +112,7 @@ pipeline {
     stage('Deploy') {
       steps {
         echo "Deploy Done"
-       sh  '/opt/homebrew/etc/wget --user=admin --password=admin http://localhost:8081/repository/maven2_upload/com/howtodoinjava/demo/spring-mvc-jenkins/0.0.1-SNAPSHOT/spring-mvc-jenkins-0.0.1-20220421.154110-1.war'
-	 sh 'pwd'
-	 sh 'ls -ltr'
+      
       }
     }
 }	 
